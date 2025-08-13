@@ -40,10 +40,16 @@ document.addEventListener('click',(e)=>{
     }
     
     else if(target.classList.contains("operator")) {
+        if(equalStatus == true ){
+            currentNumber = String(ans);
+            equalStatus = false;
+            ans = 0;
+            operations[0].operatorClicked = true;
+        }
         opIndex = signs.indexOf(target.id);
         ans = operations[opIndex].operate(ans, currentNumber);
-        currentNumber = '0';
         ans = Math.round(ans*10000000000)/10000000000;
+        currentNumber = '0';
         calcDisplay.textContent = ans;
         equalStatus = false;
     }
@@ -57,11 +63,16 @@ document.addEventListener('click',(e)=>{
         }
         ans = Math.round(ans*10000000000)/10000000000;
         calcDisplay.textContent = ans;
-        currentNumber = String(ans);
         equalStatus = true;
     }
     
     else if(target.id == 'delete') {
+        if(equalStatus == true ){
+            currentNumber = String(ans);
+            equalStatus = false;
+            ans = 0;
+            operations[0].operatorClicked = true;
+        }
         if(currentNumber.length != 1){
             if(currentNumber[currentNumber.length-1] == '.'){
             }
@@ -70,11 +81,6 @@ document.addEventListener('click',(e)=>{
             currentNumber = '0';
         }
         calcDisplay.textContent = currentNumber;
-        if(equalStatus = true) {
-            equalStatus = false;
-            ans = 0;
-            operations[0].operatorClicked = true;
-        }
     }
     else if(target.id == 'clear') {
         currentNumber = '0';
@@ -90,20 +96,22 @@ document.addEventListener('click',(e)=>{
         if(currentNumber.includes('.') == false &&  currentNumber.length <23) {
             currentNumber += '.';
             calcDisplay.textContent = currentNumber;
-            if(equalStatus = true) {
+            if(equalStatus == true ){
+            currentNumber = String(ans);
             equalStatus = false;
-            operations[0].operatorClicked = true;
             ans = 0;
+            operations[0].operatorClicked = true;
         }
         }
     }else if(target.id == 'percent') {
         currentNumber = String(+currentNumber/100);
         currentNumber = Math.round(currentNumber*10000000000)/10000000000;
         calcDisplay.textContent = currentNumber;
-        if(equalStatus = true) {
+        if(equalStatus == true ){
+            currentNumber = String(ans);
             equalStatus = false;
-            operations[0].operatorClicked = true;
             ans = 0;
+            operations[0].operatorClicked = true;
         }
     }
 }
