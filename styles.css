@@ -80,9 +80,21 @@ button:hover {
     justify-content: center;
     align-items: center; 
     gap: 1vw;
+    font-size: 3vh;
+    color: white;
 }
 
 #created {
     margin-top: 0;
     align-self: center;    
+}
+a {
+  color: white;
+  text-decoration: none;
+}
+a:visited {
+  color: white;
+}
+a:hover {
+  color: #ccc;
 }
